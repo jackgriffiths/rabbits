@@ -5,11 +5,11 @@ amendments:
     date: "2017-06-01"
     rule: When sent as a message, it must be exactly "Rabbits." (including the full stop).
   - number: 2
-    date: "2018-01-02"
+    date: "2018-01-01"
     rule: The "Rabbits." message must be sent in the Facebook Messenger group chat.
     repealed_by: 4
   - number: 3
-    date: "2019-04-02"
+    date: "2019-04-01"
     rule: The start of the month is midnight in the UK time zone (Europe/London).
   - number: 4
     date: "2020-11-03"
