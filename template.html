@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rabbits. &mdash; Official Record</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-deep: #060e1a;
+      --navy-mid: #132240;
+      --gold: #c9a84c;
+      --gold-light: #e0c872;
+      --gold-pale: #f0e4b8;
+      --gold-dark: #8a6d2b;
+      --parchment: #f5f0e1;
+      --parchment-dark: #e8e0cc;
+      --parchment-light: #faf7ef;
+      --ink: #1a1a1a;
+      --ink-light: #3d3832;
+      --ink-muted: #6b6358;
+      --cream: #fffcf4;
+      --border-ornament: #c9a84c44;
+      --shadow-gold: rgba(201, 168, 76, 0.15);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--navy-deep);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ========== HERO / HEADER ========== */
+    .hero {
+      background: linear-gradient(175deg, var(--navy-deep) 0%, var(--navy) 40%, var(--navy-mid) 100%);
+      text-align: center;
+      padding: 5rem 2rem 4.5rem;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 600px 300px at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 100%),
+        radial-gradient(ellipse 400px 400px at 50% 100%, rgba(201,168,76,0.04) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold-light) 30%, var(--gold) 50%, var(--gold-light) 70%, transparent 100%);
+    }
+
+    .hero-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      opacity: 0.5;
+    }
+
+    .hero-ornament .line {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .hero-ornament .diamond {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    .hero-overline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      font-weight: 700;
+      color: var(--parchment);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+      text-shadow: 0 2px 20px rgba(201,168,76,0.15);
+    }
+
+    .hero-title .period {
+      color: var(--gold);
+    }
+
+    .hero-subtitle {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--gold-pale);
+      opacity: 0.6;
+      margin-top: 1rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-established {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.35;
+      margin-top: 2rem;
+    }
+
+    /* ========== NAV ========== */
+    .section-nav {
+      background: var(--navy);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .section-nav ul {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      list-style: none;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .section-nav a {
+      display: block;
+      padding: 1rem 2.5rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-pale);
+      text-decoration: none;
+      opacity: 0.5;
+      transition: opacity 0.3s, color 0.3s;
+      position: relative;
+    }
+
+    .section-nav a:hover {
+      opacity: 1;
+      color: var(--gold);
+    }
+
+    .section-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 60%;
+      height: 2px;
+      background: var(--gold);
+      transition: transform 0.3s;
+    }
+
+    .section-nav a:hover::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    /* ========== MAIN CONTENT ========== */
+    .main-content {
+      background:
+        linear-gradient(180deg, var(--parchment) 0%, var(--cream) 30%, var(--parchment-light) 100%);
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .main-content::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 100px,
+          rgba(201,168,76,0.03) 100px,
+          rgba(201,168,76,0.03) 101px
+        );
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ========== SECTION STYLING ========== */
+    .section {
+      padding: 4rem 0;
+      position: relative;
+    }
+
+    .section + .section {
+      border-top: 1px solid var(--border-ornament);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-number {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      opacity: 0.6;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.03em;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .section-divider .seg {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.4;
+    }
+
+    .section-divider .dot {
+      width: 5px;
+      height: 5px;
+      border: 1px solid var(--gold);
+      transform: rotate(45deg);
+      opacity: 0.4;
+    }
+
+    .last-updated {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--ink-muted);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    /* ========== LEADERBOARD ========== */
+    .leaderboard {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .leaderboard-entry {
+      display: grid;
+      grid-template-columns: 3.5rem 1fr auto;
+      align-items: center;
+      padding: 1.1rem 1.5rem;
+      background: var(--cream);
+      border: 1px solid rgba(201,168,76,0.12);
+      border-bottom: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .leaderboard-entry:first-child {
+      border-radius: 6px 6px 0 0;
+    }
+
+    .leaderboard-entry:last-child {
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+      border-radius: 0 0 6px 6px;
+    }
+
+    .leaderboard-entry:hover {
+      background: var(--parchment-light);
+    }
+
+    .leaderboard-entry.rank-1,
+    .leaderboard-entry.rank-2,
+    .leaderboard-entry.rank-3 {
+      background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, var(--cream) 100%);
+    }
+
+    .leaderboard-rank {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink-muted);
+    }
+
+    .rank-1 .leaderboard-rank,
+    .rank-2 .leaderboard-rank,
+    .rank-3 .leaderboard-rank {
+      color: var(--gold-dark);
+    }
+
+    .leaderboard-medal {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: 'Cormorant Garamond', serif;
+      margin-right: 0.5rem;
+    }
+
+    .rank-1 .leaderboard-medal {
+      background: linear-gradient(135deg, #d4af37 0%, #f5d76e 50%, #c9a84c 100%);
+      color: var(--navy-deep);
+      box-shadow: 0 2px 8px rgba(212,175,55,0.35), inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+
+    .rank-2 .leaderboard-medal {
+      background: linear-gradient(135deg, #a8a8a8 0%, #d4d4d4 50%, #b0b0b0 100%);
+      color: var(--navy-deep);
+      box-shadow: 0 2px 8px rgba(168,168,168,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+
+    .rank-3 .leaderboard-medal {
+      background: linear-gradient(135deg, #b87333 0%, #d4955a 50%, #b87333 100%);
+      color: var(--cream);
+      box-shadow: 0 2px 8px rgba(184,115,51,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+
+    .leaderboard-name {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+    }
+
+    .rank-1 .leaderboard-name {
+      font-weight: 700;
+    }
+
+    .leaderboard-wins {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--navy);
+      text-align: right;
+    }
+
+    .leaderboard-wins .wins-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.55rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      display: block;
+      margin-top: -2px;
+    }
+
+    /* ========== RULES ========== */
+    .founding-rule {
+      background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 50%, var(--navy-mid) 100%);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 6px;
+      padding: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .founding-rule::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: 3px;
+      pointer-events: none;
+    }
+
+    .founding-rule-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .founding-rule-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--parchment);
+      line-height: 1.6;
+      letter-spacing: 0.01em;
+    }
+
+    .founding-rule-text em {
+      color: var(--gold-light);
+      font-style: normal;
+    }
+
+    .amendments-header {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .amendment {
+      display: grid;
+      grid-template-columns: 5rem 1fr;
+      gap: 1.5rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid rgba(201,168,76,0.08);
+      position: relative;
+    }
+
+    .amendment:last-child {
+      border-bottom: none;
+    }
+
+    .amendment-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gold-dark);
+      text-align: right;
+      padding-top: 0.15rem;
+      white-space: nowrap;
+    }
+
+    .amendment-body {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.85rem;
+      color: var(--ink-light);
+      line-height: 1.75;
+    }
+
+    .amendment-date {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--ink-muted);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .amendment-text {
+      color: var(--ink);
+    }
+
+    .amendment.repealed .amendment-text {
+      text-decoration: line-through;
+      text-decoration-color: rgba(201,168,76,0.4);
+      opacity: 0.5;
+    }
+
+    /* ========== HISTORY ========== */
+    .history-table-wrap {
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    .history-table thead {
+      background: var(--navy);
+    }
+
+    .history-table th {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-pale);
+      padding: 1rem 1.25rem;
+      text-align: left;
+    }
+
+    .history-table td {
+      padding: 0.7rem 1.25rem;
+      border-bottom: 1px solid rgba(201,168,76,0.06);
+    }
+
+    .history-table tbody tr {
+      background: var(--cream);
+      transition: background 0.15s;
+    }
+
+    .history-table tbody tr:nth-child(even) {
+      background: rgba(201,168,76,0.04);
+    }
+
+    .history-table tbody tr:hover {
+      background: rgba(201,168,76,0.08);
+    }
+
+    .history-table .month-cell {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      color: var(--ink-light);
+      font-size: 0.85rem;
+    }
+
+    .history-table .winner-cell {
+      font-family: 'Libre Baskerville', serif;
+      color: var(--ink);
+      font-size: 0.88rem;
+    }
+
+    .history-table .year-divider td {
+      background: var(--parchment-dark);
+      color: var(--gold-dark);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      padding: 0.55rem 1.25rem;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      border-top: 1px solid rgba(201,168,76,0.15);
+    }
+
+    /* ========== FOOTER ========== */
+    .site-footer {
+      background: var(--navy-deep);
+      border-top: 3px solid var(--gold);
+      text-align: center;
+      padding: 3rem 2rem;
+      position: relative;
+    }
+
+    .site-footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold-light) 30%, var(--gold) 50%, var(--gold-light) 70%, transparent 100%);
+    }
+
+    .footer-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.3;
+    }
+
+    .footer-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.3;
+    }
+
+    .footer-ornament .f-line {
+      width: 50px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .footer-ornament .f-diamond {
+      width: 4px;
+      height: 4px;
+      background: var(--gold);
+      transform: rotate(45deg);
+    }
+
+    /* ========== ANIMATIONS ========== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-overline { animation: fadeUp 0.8s ease both 0.1s; }
+    .hero-title { animation: fadeUp 0.8s ease both 0.25s; }
+    .hero-subtitle { animation: fadeUp 0.8s ease both 0.4s; }
+    .hero-established { animation: fadeUp 0.8s ease both 0.55s; }
+    .hero-ornament { animation: fadeUp 0.6s ease both 0s; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 640px) {
+      .hero { padding: 3.5rem 1.5rem 3rem; }
+      .container { padding: 0 1.25rem; }
+      .section { padding: 3rem 0; }
+      .section-nav a { padding: 0.85rem 1.25rem; font-size: 0.6rem; letter-spacing: 0.15em; }
+      .founding-rule { padding: 1.75rem; }
+      .amendment { grid-template-columns: 4rem 1fr; gap: 1rem; }
+      .leaderboard-entry { grid-template-columns: 2.5rem 1fr auto; padding: 1rem 1.1rem; }
+      .leaderboard-wins { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== HERO ====== -->
+  <header class="hero">
+    <div class="hero-ornament">
+      <span class="line"></span>
+      <span class="diamond"></span>
+      <span class="line"></span>
+    </div>
+    <p class="hero-overline">The Official Record of</p>
+    <h1 class="hero-title">Rabbits<span class="period">.</span></h1>
+    <p class="hero-subtitle">A contest of vigilance among seven</p>
+    <p class="hero-established">Est. {{EST_TEXT}}</p>
+  </header>
+
+  <!-- ====== NAV ====== -->
+  <nav class="section-nav">
+    <ul>
+      <li><a href="#leaderboard">Leaderboard</a></li>
+      <li><a href="#rules">Rules</a></li>
+      <li><a href="#history">History</a></li>
+    </ul>
+  </nav>
+
+  <!-- ====== MAIN ====== -->
+  <main class="main-content">
+    <div class="container">
+
+      <!-- LEADERBOARD -->
+      <section class="section" id="leaderboard">
+        <div class="section-header">
+          <span class="section-number">Section I</span>
+          <h2 class="section-title">Leaderboard</h2>
+          <div class="section-divider">
+            <span class="seg"></span>
+            <span class="dot"></span>
+            <span class="seg"></span>
+          </div>
+        </div>
+
+        <p class="last-updated">Last updated: {{LAST_UPDATED}}</p>
+
+        <div class="leaderboard">
+{{LEADERBOARD}}
+        </div>
+      </section>
+
+      <!-- RULES -->
+      <section class="section" id="rules">
+        <div class="section-header">
+          <span class="section-number">Section II</span>
+          <h2 class="section-title">Rules &amp; Amendments</h2>
+          <div class="section-divider">
+            <span class="seg"></span>
+            <span class="dot"></span>
+            <span class="seg"></span>
+          </div>
+        </div>
+
+        <div class="founding-rule">
+          <p class="founding-rule-label">Founding Rule</p>
+          <p class="founding-rule-text">{{FOUNDING_RULE}}</p>
+        </div>
+
+        <p class="amendments-header">Amendments to the Founding Rule</p>
+
+{{AMENDMENTS}}
+      </section>
+
+      <!-- HISTORY -->
+      <section class="section" id="history">
+        <div class="section-header">
+          <span class="section-number">Section III</span>
+          <h2 class="section-title">Official Record of Winners</h2>
+          <div class="section-divider">
+            <span class="seg"></span>
+            <span class="dot"></span>
+            <span class="seg"></span>
+          </div>
+        </div>
+
+        <div class="history-table-wrap">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>Winner(s)</th>
+              </tr>
+            </thead>
+            <tbody>
+{{HISTORY}}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="site-footer">
+    <div class="footer-ornament">
+      <span class="f-line"></span>
+      <span class="f-diamond"></span>
+      <span class="f-line"></span>
+    </div>
+    <p class="footer-text">Rabbits. &mdash; Established {{EST_TEXT}}</p>
+  </footer>
+
+</body>
+</html>

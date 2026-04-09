@@ -1,0 +1,23 @@
+founding_rule: The winner of each month is the first person to say "rabbits".
+
+amendments:
+  - number: 1
+    date: "2017-06-01"
+    rule: When sent as a message, it must be exactly "Rabbits." (including the full stop).
+  - number: 2
+    date: "2018-01-02"
+    rule: The "Rabbits." message must be sent in the Facebook Messenger group chat.
+    repealed_by: 4
+  - number: 3
+    date: "2019-04-02"
+    rule: The start of the month is midnight in the UK time zone (Europe/London).
+  - number: 4
+    date: "2020-11-03"
+    rule: Amendment 2 is hereby repealed. The "Rabbits." message must be sent in the Signal group chat.
+    repealed_by: 6
+  - number: 5
+    date: "2021-02-10"
+    rule: No person can withdraw from the game.
+  - number: 6
+    date: "2024-11-30"
+    rule: Amendment 4 is hereby repealed. The "Rabbits." message must be sent in the WhatsApp group chat.
