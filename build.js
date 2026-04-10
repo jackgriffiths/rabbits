@@ -118,10 +118,10 @@ const amendmentsHtml = rules.amendments.map(a => {
   const isRepealed = repealedMap[a.number] !== undefined;
   const repealedClass = isRepealed ? ' repealed' : '';
   const repealNote = isRepealed
-    ? ` <em style="font-size:0.75rem;opacity:0.7;text-decoration:none;display:inline">&mdash;&nbsp;Repealed by Art. ${toRoman(repealedMap[a.number])}</em>`
+    ? ` <em style="font-size:0.75rem;opacity:0.7;text-decoration:none;display:inline">&mdash;&nbsp;Repealed by Amend. ${toRoman(repealedMap[a.number])}</em>`
     : '';
   return `        <div class="amendment${repealedClass}">
-          <span class="amendment-number">Art. ${toRoman(a.number)}</span>
+          <span class="amendment-number">Amend. ${toRoman(a.number)}</span>
           <div class="amendment-body">
             <span class="amendment-text">${a.rule}${repealNote}</span>
             <span class="amendment-date">${formatDate(a.date)}</span>
