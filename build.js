@@ -123,8 +123,8 @@ const amendmentsHtml = rules.amendments.map(a => {
   return `        <div class="amendment${repealedClass}">
           <span class="amendment-number">Art. ${toRoman(a.number)}</span>
           <div class="amendment-body">
-            <span class="amendment-date">${formatDate(a.date)}</span>
             <span class="amendment-text">${a.rule}${repealNote}</span>
+            <span class="amendment-date">${formatDate(a.date)}</span>
           </div>
         </div>`;
 }).join('\n\n');
