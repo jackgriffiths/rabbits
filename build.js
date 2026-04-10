@@ -97,36 +97,28 @@ for (const a of rules.amendments) {
   }
 }
 
-// Established text from earliest entry
-const firstEntry = entries[0];
-const estDate = new Date(parseInt(firstEntry.month.split('-')[0]), parseInt(firstEntry.month.split('-')[1]) - 1);
-const estText = estDate.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
-
 // Build leaderboard HTML
 const leaderboardHtml = leaderboard.map(([name, count], i) => {
   const rank = i + 1;
   const rankClass = rank <= 3 ? ` rank-${rank}` : '';
   const roman = toRoman(rank);
   const winsDisplay = count % 1 ? count : count.toFixed(0);
-  const medal = rank <= 3
-    ? `<span class="leaderboard-medal">${rank}</span>`
-    : '';
   return `          <div class="leaderboard-entry${rankClass}">
             <span class="leaderboard-rank">${roman}</span>
-            <span class="leaderboard-name">${medal}${name}</span>
+            <span class="leaderboard-name">${name}</span>
             <span class="leaderboard-wins">${winsDisplay}<span class="wins-label">wins</span></span>
           </div>`;
 }).join('\n');
 
 // Build founding rule HTML
-const foundingRuleHtml = rules.foundingRule.replace(/"rabbits"/, '<em>"rabbits"</em>');
+const foundingRuleHtml = rules.foundingRule.replace(/rabbits/, '<em>rabbits</em>').replace(/\.$/, '');
 
 // Build amendments HTML
 const amendmentsHtml = rules.amendments.map(a => {
   const isRepealed = repealedMap[a.number] !== undefined;
   const repealedClass = isRepealed ? ' repealed' : '';
   const repealNote = isRepealed
-    ? ` <em style="font-size:0.75rem;opacity:0.7;text-decoration:none;display:inline">&mdash; Repealed by Art. ${toRoman(repealedMap[a.number])}</em>`
+    ? ` <em style="font-size:0.75rem;opacity:0.7;text-decoration:none;display:inline">&mdash;&nbsp;Repealed by Art. ${toRoman(repealedMap[a.number])}</em>`
     : '';
   return `        <div class="amendment${repealedClass}">
           <span class="amendment-number">Art. ${toRoman(a.number)}</span>
@@ -148,7 +140,7 @@ for (const e of reversed) {
     currentYear = year;
     historyHtml += `              <tr class="year-divider"><td colspan="2">${year}</td></tr>\n`;
   }
-  historyHtml += `              <tr><td class="month-cell">${monthName}</td><td class="winner-cell">${e.winners.join(', ')}</td></tr>\n`;
+  historyHtml += `              <tr><td class="month-cell">${monthName}</td><td class="winner-cell">${e.winners.join(' & ')}</td></tr>\n`;
 }
 
 // Build last updated timestamp in Europe/London
@@ -166,7 +158,6 @@ const lastUpdated = new Date().toLocaleString('en-GB', {
 const template = fs.readFileSync('template.html', 'utf8');
 
 const html = template
-  .replace(/\{\{EST_TEXT\}\}/g, estText)
   .replace('{{LAST_UPDATED}}', lastUpdated)
   .replace('{{LEADERBOARD}}', leaderboardHtml)
   .replace('{{FOUNDING_RULE}}', foundingRuleHtml)

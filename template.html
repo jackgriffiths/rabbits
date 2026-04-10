@@ -29,7 +29,7 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
 
     body {
       font-family: 'DM Sans', sans-serif;
@@ -69,6 +69,24 @@
       background: linear-gradient(90deg, transparent 0%, var(--gold-light) 30%, var(--gold) 50%, var(--gold-light) 70%, transparent 100%);
     }
 
+    .hero-watermark {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: min(420px, 95%);
+      max-height: 90%;
+      aspect-ratio: 1 / 1;
+      color: var(--gold);
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-ornament,
+    .hero-overline,
+    .hero-title,
+    .hero-subtitle { position: relative; z-index: 1; }
+
     .hero-ornament {
       display: flex;
       align-items: center;
@@ -90,6 +108,14 @@
       background: var(--gold);
       transform: rotate(45deg);
       flex-shrink: 0;
+    }
+
+    .hero-ornament .rabbit-mark {
+      width: 28px;
+      height: 28px;
+      color: var(--gold);
+      flex-shrink: 0;
+      filter: drop-shadow(0 1px 6px rgba(201,168,76,0.35));
     }
 
     .hero-overline {
@@ -126,17 +152,6 @@
       opacity: 0.6;
       margin-top: 1rem;
       letter-spacing: 0.02em;
-    }
-
-    .hero-established {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--gold);
-      opacity: 0.35;
-      margin-top: 2rem;
     }
 
     /* ========== NAV ========== */
@@ -196,25 +211,11 @@
     /* ========== MAIN CONTENT ========== */
     .main-content {
       background:
-        linear-gradient(180deg, var(--parchment) 0%, var(--cream) 30%, var(--parchment-light) 100%);
+        linear-gradient(180deg, var(--parchment-dark) 0%, var(--cream) 25%, var(--parchment-light) 60%, var(--parchment) 100%);
       min-height: 100vh;
       position: relative;
     }
 
-    .main-content::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 100px,
-          rgba(201,168,76,0.03) 100px,
-          rgba(201,168,76,0.03) 101px
-        );
-      pointer-events: none;
-    }
 
     .container {
       max-width: 800px;
@@ -257,6 +258,7 @@
       letter-spacing: 0.03em;
       position: relative;
       display: inline-block;
+      text-wrap: balance;
     }
 
     .section-divider {
@@ -282,6 +284,14 @@
       opacity: 0.4;
     }
 
+    .section-divider .divider-rabbit {
+      width: 18px;
+      height: 18px;
+      color: var(--gold-dark);
+      opacity: 0.45;
+      flex-shrink: 0;
+    }
+
     .last-updated {
       font-family: 'DM Sans', sans-serif;
       font-size: 0.65rem;
@@ -304,7 +314,7 @@
       grid-template-columns: 3.5rem 1fr auto;
       align-items: center;
       padding: 1.1rem 1.5rem;
-      background: var(--cream);
+      background: linear-gradient(135deg, var(--parchment-light) 0%, var(--cream) 100%);
       border: 1px solid rgba(201,168,76,0.12);
       border-bottom: none;
       transition: background 0.2s, transform 0.2s;
@@ -323,10 +333,8 @@
       background: var(--parchment-light);
     }
 
-    .leaderboard-entry.rank-1,
-    .leaderboard-entry.rank-2,
-    .leaderboard-entry.rank-3 {
-      background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, var(--cream) 100%);
+    .leaderboard-entry.rank-1 {
+      background: linear-gradient(in oklch 135deg, oklch(72% 0.12 85 / 0.15) 0%, var(--cream) 100%);
     }
 
     .leaderboard-rank {
@@ -337,40 +345,8 @@
     }
 
     .rank-1 .leaderboard-rank,
-    .rank-2 .leaderboard-rank,
-    .rank-3 .leaderboard-rank {
+    .rank-1 .leaderboard-name {
       color: var(--gold-dark);
-    }
-
-    .leaderboard-medal {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      font-size: 0.75rem;
-      font-weight: 700;
-      font-family: 'Cormorant Garamond', serif;
-      margin-right: 0.5rem;
-    }
-
-    .rank-1 .leaderboard-medal {
-      background: linear-gradient(135deg, #d4af37 0%, #f5d76e 50%, #c9a84c 100%);
-      color: var(--navy-deep);
-      box-shadow: 0 2px 8px rgba(212,175,55,0.35), inset 0 1px 0 rgba(255,255,255,0.3);
-    }
-
-    .rank-2 .leaderboard-medal {
-      background: linear-gradient(135deg, #a8a8a8 0%, #d4d4d4 50%, #b0b0b0 100%);
-      color: var(--navy-deep);
-      box-shadow: 0 2px 8px rgba(168,168,168,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
-    }
-
-    .rank-3 .leaderboard-medal {
-      background: linear-gradient(135deg, #b87333 0%, #d4955a 50%, #b87333 100%);
-      color: var(--cream);
-      box-shadow: 0 2px 8px rgba(184,115,51,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
     }
 
     .leaderboard-name {
@@ -382,9 +358,6 @@
       align-items: center;
     }
 
-    .rank-1 .leaderboard-name {
-      font-weight: 700;
-    }
 
     .leaderboard-wins {
       font-family: 'Cormorant Garamond', serif;
@@ -444,6 +417,7 @@
       color: var(--parchment);
       line-height: 1.6;
       letter-spacing: 0.01em;
+      text-wrap: pretty;
     }
 
     .founding-rule-text em {
@@ -461,6 +435,7 @@
       margin-bottom: 1.5rem;
       padding-bottom: 0.75rem;
       border-bottom: 1px solid rgba(201,168,76,0.15);
+      text-align: center;
     }
 
     .amendment {
@@ -470,6 +445,7 @@
       padding: 1.25rem 0;
       border-bottom: 1px solid rgba(201,168,76,0.08);
       position: relative;
+      text-wrap: pretty;
     }
 
     .amendment:last-child {
@@ -544,6 +520,7 @@
     .history-table td {
       padding: 0.7rem 1.25rem;
       border-bottom: 1px solid rgba(201,168,76,0.06);
+      text-box-trim: trim-end;
     }
 
     .history-table tbody tr {
@@ -610,7 +587,8 @@
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--gold);
-      opacity: 0.3;
+      opacity: 0.5;
+      text-wrap: pretty;
     }
 
     .footer-ornament {
@@ -619,7 +597,7 @@
       justify-content: center;
       gap: 1rem;
       margin-bottom: 1.5rem;
-      opacity: 0.3;
+      opacity: 0.5;
     }
 
     .footer-ornament .f-line {
@@ -635,6 +613,13 @@
       transform: rotate(45deg);
     }
 
+    .footer-ornament .footer-rabbit {
+      width: 14px;
+      height: 14px;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
     /* ========== ANIMATIONS ========== */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(12px); }
@@ -644,7 +629,6 @@
     .hero-overline { animation: fadeUp 0.8s ease both 0.1s; }
     .hero-title { animation: fadeUp 0.8s ease both 0.25s; }
     .hero-subtitle { animation: fadeUp 0.8s ease both 0.4s; }
-    .hero-established { animation: fadeUp 0.8s ease both 0.55s; }
     .hero-ornament { animation: fadeUp 0.6s ease both 0s; }
 
     /* ========== RESPONSIVE ========== */
@@ -662,17 +646,61 @@
 </head>
 <body>
 
+  <!-- ====== ICON DEFINITIONS ====== -->
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+    <symbol id="rabbit-icon" viewBox="0 0 600 600">
+      <metadata>
+        <rdf:RDF>
+          <cc:Work>
+            <dc:format>image/svg+xml</dc:format>
+            <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+            <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+            <dc:publisher>
+              <cc:Agent rdf:about="http://openclipart.org/">
+                <dc:title>Openclipart</dc:title>
+              </cc:Agent>
+            </dc:publisher>
+            <dc:title>Rabbit Silhouette</dc:title>
+            <dc:date>2011-01-31T13:34:00</dc:date>
+            <dc:description>Black Silhouette of the rabbit.</dc:description>
+            <dc:source>https://openclipart.org/detail/116629/rabbit-silhouette-by-kuba</dc:source>
+            <dc:creator>
+              <cc:Agent>
+                <dc:title>kuba</dc:title>
+              </cc:Agent>
+            </dc:creator>
+            <dc:subject>
+              <rdf:Bag>
+                <rdf:li>black</rdf:li>
+                <rdf:li>chinesenewyear2011</rdf:li>
+                <rdf:li>new year</rdf:li>
+                <rdf:li>rabbit</rdf:li>
+                <rdf:li>silhouette</rdf:li>
+              </rdf:Bag>
+            </dc:subject>
+          </cc:Work>
+          <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+            <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+            <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+            <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+          </cc:License>
+        </rdf:RDF>
+      </metadata>
+      <path fill="currentColor" d="m335.94 30.576c-9.7931-0.14612-17.391 4.4395-17.391 13.79 0 11.508-2.9102 60.415 1.4053 76.239s21.586 38.972 34.518 54.676c10.069 12.227 4.3477 41.696 4.3477 56.081s-2.8975 25.911-8.6515 25.911-14.36 5.7522-20.114 11.506c-5.754 5.754-11.516 12.956-18.708 7.2023-7.1925-5.754-20.154-11.494-43.17-15.81-23.016-4.3155-61.841-0.0234-86.296 8.6076s-76.259 56.111-90.644 77.688c-14.385 21.578-15.799 87.732-14.361 97.802 1.4385 10.07-2.9083 17.283-10.101 8.6515-7.1925-8.631-12.911-4.3038-12.911-4.3038s-7.2023 14.37-7.2023 21.563c0 7.1924 2.8546 14.361 2.8546 14.361s-11.506 8.6506-11.506 14.405c0 5.754 11.516 15.83 18.708 24.461 7.1925 8.631 31.651 25.9 41.721 24.461 10.07-1.4385 28.775-0.0121 35.968 4.3038 7.1925 4.3155 24.447 10.068 46.024 11.506 21.578 1.4385 81.978 5.7531 97.802 5.7531s20.168-2.8644 27.36-10.057c7.1925-7.1924-5.7853-15.841-10.101-25.911-4.3155-10.069 14.404-7.1691 20.158-8.6076s21.594-11.506 31.664-11.506 8.6165 10.056 21.563 15.81c12.947 5.7539 31.639 24.439 46.024 27.316s47.472 0.0121 58.98-4.3038c11.508-4.3155 10.069-14.37 0-21.563-10.07-7.1924-34.507-20.167-38.822-27.36-4.3155-7.1925-5.7433-15.82 1.4492-23.012 7.1925-7.1925 14.359-4.3029 25.867-10.057 11.508-5.754 15.81-23.044 15.81-33.113 0-10.07 1.3693-21.014 5.7531-27.316 3.6734-5.2813 5.1002-22.132 5.305-33.64 0.21874-12.289-5.2933-15.249-9.6088-22.441-4.3154-7.1925 4.3028-17.259 10.057-17.259 5.754 0 31.651-4.336 41.721-8.6515 10.069-4.3155 20.167-23.033 27.36-31.664 7.1925-8.631 1.418-27.315-8.6515-33.069s-10.077-21.594-18.708-31.664-18.685-31.63-27.316-38.822c-8.631-7.1925-28.775-12.955-35.968-12.955-7.1925 0-11.506 0.0009-11.506-5.7531s-1.4492-12.92-1.4492-25.867-16.243-68.465-37.373-102.15c-4.408-7.0273-11.558-5.4053-20.158-2.8985-5.6941 1.6599-8.6076 4.3556-8.6076 23.056 0 18.701-11.505-0.03133-17.259-10.101s-15.863-21.584-28.809-24.461c-2.4275-0.53942-4.7667-0.80069-7.0266-0.8344z"/>
+    </symbol>
+  </svg>
+
   <!-- ====== HERO ====== -->
   <header class="hero">
+    <svg class="hero-watermark" aria-hidden="true"><use href="#rabbit-icon"/></svg>
     <div class="hero-ornament">
       <span class="line"></span>
-      <span class="diamond"></span>
+      <svg class="rabbit-mark" aria-hidden="true"><use href="#rabbit-icon"/></svg>
       <span class="line"></span>
     </div>
     <p class="hero-overline">The Official Record of</p>
     <h1 class="hero-title">Rabbits<span class="period">.</span></h1>
     <p class="hero-subtitle">A contest of vigilance among seven</p>
-    <p class="hero-established">Est. {{EST_TEXT}}</p>
   </header>
 
   <!-- ====== NAV ====== -->
@@ -695,7 +723,7 @@
           <h2 class="section-title">Leaderboard</h2>
           <div class="section-divider">
             <span class="seg"></span>
-            <span class="dot"></span>
+            <svg class="divider-rabbit" aria-hidden="true"><use href="#rabbit-icon"/></svg>
             <span class="seg"></span>
           </div>
         </div>
@@ -714,7 +742,7 @@
           <h2 class="section-title">Rules &amp; Amendments</h2>
           <div class="section-divider">
             <span class="seg"></span>
-            <span class="dot"></span>
+            <svg class="divider-rabbit" aria-hidden="true"><use href="#rabbit-icon"/></svg>
             <span class="seg"></span>
           </div>
         </div>
@@ -724,7 +752,7 @@
           <p class="founding-rule-text">{{FOUNDING_RULE}}</p>
         </div>
 
-        <p class="amendments-header">Amendments to the Founding Rule</p>
+        <p class="amendments-header">Amendments</p>
 
 {{AMENDMENTS}}
       </section>
@@ -736,7 +764,7 @@
           <h2 class="section-title">Official Record of Winners</h2>
           <div class="section-divider">
             <span class="seg"></span>
-            <span class="dot"></span>
+            <svg class="divider-rabbit" aria-hidden="true"><use href="#rabbit-icon"/></svg>
             <span class="seg"></span>
           </div>
         </div>
@@ -746,7 +774,7 @@
             <thead>
               <tr>
                 <th>Month</th>
-                <th>Winner(s)</th>
+                <th>Winner</th>
               </tr>
             </thead>
             <tbody>
@@ -763,10 +791,10 @@
   <footer class="site-footer">
     <div class="footer-ornament">
       <span class="f-line"></span>
-      <span class="f-diamond"></span>
+      <svg class="footer-rabbit" aria-hidden="true"><use href="#rabbit-icon"/></svg>
       <span class="f-line"></span>
     </div>
-    <p class="footer-text">Rabbits. &mdash; Established {{EST_TEXT}}</p>
+    <p class="footer-text">Rabbits.</p>
   </footer>
 
 </body>
