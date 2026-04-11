@@ -166,4 +166,20 @@ const html = template
 
 fs.mkdirSync('dist', { recursive: true });
 fs.writeFileSync(path.join('dist', 'index.html'), html);
+
+const assets = [
+  'favicon.svg',
+  'apple-touch-icon.png',
+  'icon-192.png',
+  'icon-512.png',
+  'icon-maskable-512.png',
+  'og-image.png',
+  'manifest.webmanifest',
+];
+for (const asset of assets) {
+  if (fs.existsSync(asset)) {
+    fs.copyFileSync(asset, path.join('dist', asset));
+  }
+}
+
 console.log(`Generated dist/index.html with ${entries.length} months and ${leaderboard.length} players.`);
