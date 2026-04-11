@@ -173,7 +173,7 @@ const assets = [
   'icon-192.png',
   'icon-512.png',
   'icon-maskable-512.png',
-  'og-image.png',
+  'og-image.jpg',
   'manifest.webmanifest',
 ];
 for (const asset of assets) {
