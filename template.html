@@ -26,6 +26,8 @@
       --gold-light: #e0c872;
       --gold-pale: #f0e4b8;
       --gold-dark: #8a6d2b;
+      --silver: #8a9099;
+      --bronze: #a0622a;
       --parchment: #f5f0e1;
       --parchment-dark: #e8e0cc;
       --parchment-light: #faf7ef;
@@ -340,12 +342,9 @@
     }
 
     .leaderboard-entry:hover {
-      background: var(--parchment-light);
+      background: linear-gradient(135deg, var(--parchment) 0%, var(--parchment-light) 100%);
     }
 
-    .leaderboard-entry.rank-1 {
-      background: linear-gradient(in oklch 135deg, oklch(72% 0.12 85 / 0.15) 0%, var(--cream) 100%);
-    }
 
     .leaderboard-rank {
       font-family: 'Cormorant Garamond', serif;
@@ -354,10 +353,36 @@
       color: var(--ink-muted);
     }
 
+    .leaderboard-entry.rank-1 {
+      background: linear-gradient(135deg, oklch(72% 0.12 85 / 0.18) 0%, var(--cream) 100%);
+    }
+
     .rank-1 .leaderboard-rank,
-    .rank-1 .leaderboard-name {
+    .rank-1 .leaderboard-name,
+    .rank-1 .leaderboard-wins {
       color: var(--gold-dark);
     }
+
+    .leaderboard-entry.rank-2 {
+      background: linear-gradient(135deg, oklch(70% 0.01 240 / 0.08) 0%, var(--cream) 100%);
+    }
+
+    .rank-2 .leaderboard-rank,
+    .rank-2 .leaderboard-name,
+    .rank-2 .leaderboard-wins {
+      color: var(--silver);
+    }
+
+    .leaderboard-entry.rank-3 {
+      background: linear-gradient(135deg, oklch(58% 0.09 55 / 0.10) 0%, var(--cream) 100%);
+    }
+
+    .rank-3 .leaderboard-rank,
+    .rank-3 .leaderboard-name,
+    .rank-3 .leaderboard-wins {
+      color: var(--bronze);
+    }
+
 
     .leaderboard-name {
       font-family: 'Libre Baskerville', serif;
