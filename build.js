@@ -129,18 +129,13 @@ const amendmentsHtml = rules.amendments.map(a => {
         </div>`;
 }).join('\n\n');
 
-// Build history HTML grouped by year
+// Build history HTML
 const reversed = [...entries].reverse();
 let historyHtml = '';
-let currentYear = null;
 
 for (const e of reversed) {
   const { monthName, year } = formatMonth(e.month);
-  if (year !== currentYear) {
-    currentYear = year;
-    historyHtml += `              <tr class="year-divider"><td colspan="2">${year}</td></tr>\n`;
-  }
-  historyHtml += `              <tr><td class="month-cell">${monthName}</td><td class="winner-cell">${e.winners.join(' & ')}</td></tr>\n`;
+  historyHtml += `              <tr><td class="month-cell">${monthName} ${year}</td><td class="winner-cell">${e.winners.join(' & ')}</td></tr>\n`;
 }
 
 // Build last updated timestamp in Europe/London
